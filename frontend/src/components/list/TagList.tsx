@@ -1,5 +1,5 @@
 import { debounce } from "lodash-es";
-import { type FC, useMemo } from "react";
+import { type FC, useEffect, useMemo } from "react";
 import { Card, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ErrorMessage } from "src/components/fragments";
@@ -50,6 +50,7 @@ const TagList: FC<TagListProps> = ({ tagFilter, showCategoryLink = false }) => {
   ));
 
   const debouncedHandler = useMemo(() => debounce(setParams, 200), [setParams]);
+  useEffect(() => () => debouncedHandler.cancel(), [debouncedHandler]);
 
   const filters = (
     <Form.Control

@@ -3,7 +3,7 @@ import {
   faSortAmountUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { debounce } from "lodash-es";
-import { type FC, useMemo } from "react";
+import { type FC, useEffect, useMemo } from "react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Select from "react-select";
@@ -65,6 +65,7 @@ const PerformersComponent: FC = () => {
   });
 
   const debouncedHandler = useMemo(() => debounce(setParams, 200), [setParams]);
+  useEffect(() => () => debouncedHandler.cancel(), [debouncedHandler]);
 
   if (!loading && !data)
     return <ErrorMessage error="Failed to load performers" />;

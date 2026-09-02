@@ -1,6 +1,6 @@
 import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { debounce } from "lodash-es";
-import { type FC, useMemo } from "react";
+import { type FC, useEffect, useMemo } from "react";
 import { Button, Form, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ErrorMessage, Icon } from "src/components/fragments";
@@ -30,6 +30,7 @@ const UsersComponent: FC = () => {
   });
 
   const debouncedHandler = useMemo(() => debounce(setParams, 200), [setParams]);
+  useEffect(() => () => debouncedHandler.cancel(), [debouncedHandler]);
 
   if (!loading && !data) return <ErrorMessage error="Failed to load users." />;
 
