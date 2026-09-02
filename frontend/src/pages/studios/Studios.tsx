@@ -1,5 +1,5 @@
 import { debounce } from "lodash-es";
-import type { FC } from "react";
+import { type FC, useMemo } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavoriteStar } from "src/components/fragments";
@@ -46,7 +46,7 @@ const StudiosComponent: FC = () => {
     </li>
   ));
 
-  const debouncedHandler = debounce(setParams, 200);
+  const debouncedHandler = useMemo(() => debounce(setParams, 200), [setParams]);
 
   const filters = (
     <>

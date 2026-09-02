@@ -3,7 +3,7 @@ import {
   faSortAmountUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { debounce } from "lodash-es";
-import { type FC, Fragment } from "react";
+import { type FC, Fragment, useMemo } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import Select from "react-select";
 import { Icon } from "src/components/fragments";
@@ -70,7 +70,7 @@ export const StudioPerformers: FC<Props> = ({ id }) => {
 
   const performers = data?.queryPerformers.performers;
 
-  const debouncedHandler = debounce(setParams, 200);
+  const debouncedHandler = useMemo(() => debounce(setParams, 200), [setParams]);
 
   const filters = (
     <>
