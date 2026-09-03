@@ -38,7 +38,7 @@ const Main: FC<Props> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { loading, user } = useAuth();
-  const { data: unreadNotifications } = useUnreadNotificationsCount();
+  const { data: unreadNotifications } = useUnreadNotificationsCount(!user);
   const unreadCounts = unreadNotifications?.getUnreadNotificationCount;
   const notificationCount = unreadCounts?.total || null;
   const hasUrgent = (unreadCounts?.urgent ?? 0) > 0;
